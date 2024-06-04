@@ -1,0 +1,1 @@
+ffmpeg -f s16le -ar 44100 -ac 2 -i captured_audio.raw output.wav

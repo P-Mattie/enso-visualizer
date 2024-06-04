@@ -1,36 +1,36 @@
 const { ipcRenderer } = require("electron");
 
-const canvas = document.getElementById("visualizer");
-const context = canvas.getContext("2d");
-
 ipcRenderer.on("audioData", (event, data) => {
-  // Convert the raw audio data to an array of floating-point numbers
-  const audioData = new Float32Array(data.buffer);
+  const canvas = document.getElementById("visualization");
+  const context = canvas.getContext("2d");
 
-  // Clear the canvas
-  context.clearRect(0, 0, canvas.width, canvas.height);
+  const width = canvas.width;
+  const height = canvas.height;
 
-  // Draw the waveform
-  drawWaveform(audioData);
-});
+  context.clearRect(0, 0, width, height);
+  context.fillStyle = "rgb(0, 0, 0)";
+  context.fillRect(0, 0, width, height);
 
-function drawWaveform(audioData) {
-  const step = Math.ceil(audioData.length / canvas.width);
-  const amp = canvas.height / 2;
-
+  context.lineWidth = 2;
+  context.strokeStyle = "rgb(0, 255, 0)";
   context.beginPath();
-  for (let i = 0; i < canvas.width; i++) {
-    const min = -1;
-    const max = 1;
-    const x = i;
-    const y = audioData[i * step] * amp + amp;
+
+  const sliceWidth = (width * 1.0) / data.length;
+  let x = 0;
+
+  for (let i = 0; i < data.length; i++) {
+    const v = data[i];
+    const y = ((v + 1) * height) / 2;
+
     if (i === 0) {
       context.moveTo(x, y);
     } else {
       context.lineTo(x, y);
     }
+
+    x += sliceWidth;
   }
-  context.strokeStyle = "blue";
-  context.lineWidth = 2;
+
+  context.lineTo(canvas.width, canvas.height / 2);
   context.stroke();
-}
+});

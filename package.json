@@ -10,7 +10,8 @@
   "license": "ISC",
   "description": "",
   "devDependencies": {
-    "electron": "^30.0.9"
+    "electron": "^30.0.9",
+    "tone": "^15.0.4"
   },
   "permissions": {
     "audioCapture": true
