@@ -1,5 +1,60 @@
 const { ipcRenderer } = require("electron");
 
+// -----------------------
+
+const srcsList = document.querySelector(".audioSrc_Select");
+const refreshListBtn = document.querySelector(".refresh-list-btn");
+
+refreshListBtn.addEventListener("click", function () {
+  ipcRenderer.send("getAudioSrcs");
+});
+
+ipcRenderer.on("audioSrcs", (event, data) => {
+  srcsList.innerHTML = "";
+  data.forEach((item) => {
+    const newLi = document.createElement("li");
+    newLi.textContent = item;
+    newLi.classList.add("srcListLis");
+    srcsList.appendChild(newLi);
+    isDoubleClick(newLi, srcsLiDoubleClick);
+  });
+});
+
+const srcsLiDoubleClick = (event) => {
+  const srcName = event.target.innerText;
+  console.log(srcName);
+  updateAudioSrc(srcName);
+  // add update Ui
+};
+
+//   handle rest in main !!!!!!!!!!!!!!!!!
+function updateAudioSrc(srcName) {
+  ipcRenderer.send("updateAudioSrc", srcName);
+}
+
+// -----------------------
+
+const isDoubleClick = (target, onDoubleClick) => {
+  let clicks = 0;
+  let timer = null;
+
+  const handleClick = () => {
+    clicks++;
+    if (clicks === 1) {
+      timer = setTimeout(() => {
+        clicks = 0;
+      }, 200);
+    } else if (clicks === 2) {
+      clearTimeout(timer);
+      clicks = 0;
+      onDoubleClick(event);
+    }
+  };
+
+  target.addEventListener("click", handleClick);
+};
+
+// -----------------------
 ipcRenderer.on("audioData", (event, data) => {
   const canvas = document.getElementById("visualization");
   const context = canvas.getContext("2d");

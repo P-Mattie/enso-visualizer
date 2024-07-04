@@ -3,15 +3,20 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="renderer.js" defer></script>
     <title>Document</title>
-    <style>
-      canvas {
-        border: 1px solid black;
-      }
-    </style>
   </head>
   <body>
     <canvas id="visualization" width="800" height="200"></canvas>
-    <script src="renderer.js"></script>
+
+    <div class="audioSrcPanel">
+      <h4 id="audioSrc_Curr">no source selected</h4>
+      <button class="refresh-list-btn">refresh</button>
+      <div class="audioSrc_Menu">
+        <label for="audioSrc_Select">Select Audio Sink:</label>
+        <ul class="audioSrc_Select"></ul>
+      </div>
+    </div>
   </body>
 </html>

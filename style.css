@@ -1,0 +1,102 @@
+:root {
+  --bg-clr: #111111;
+  --surface-clr: #1a1a1a;
+  --surface2-clr: #141414;
+}
+
+body {
+  background-color: var(--bg-clr);
+  overflow: hidden;
+}
+
+canvas {
+  border: 1px solid black;
+}
+
+.audioSrcPanel {
+  user-select: none;
+  background-color: var(--surface-clr);
+  width: 400px;
+  height: 200px;
+  color: white;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  font-weight: 200;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.refresh-list-btn {
+  height: 30px;
+  position: absolute;
+  margin-left: 310px;
+  margin-top: 44px;
+  color: rgb(177, 177, 177);
+  background-color: var(--surface-clr);
+  border: none;
+  font-weight: bold;
+  border-radius: 4px;
+}
+
+.refresh-list-btn:hover {
+  color: #ebebeb;
+  font-size: 15px;
+}
+
+.refresh-list-btn:active {
+  color: greenyellow;
+}
+
+#audioSrc_Curr {
+  margin: 0;
+  margin-top: 20px;
+  padding: 10px;
+  background-color: var(--surface2-clr);
+  color: antiquewhite;
+}
+
+.audioSrc_Menu {
+  margin-top: 16px;
+  width: 90%;
+  height: 60%;
+  background-color: var(--surface2-clr);
+}
+
+.audioSrc_Menu label {
+  display: block;
+  margin: 6px;
+}
+
+.audioSrc_Select {
+  overflow-y: auto;
+  overflow-x: hidden;
+  list-style-type: none;
+  height: 80px;
+  margin: 6px;
+  padding: 0;
+}
+
+.audioSrc_Select li {
+  cursor: pointer;
+  color: rgb(161, 161, 161);
+}
+
+.audioSrc_Select li:nth-child(odd) {
+  background-color: #181818;
+}
+.audioSrc_Select li:nth-child(even) {
+  background-color: #1f1f1f;
+}
+
+.audioSrc_Select li:hover {
+  background-color: #252525;
+}
+
+.audioSrc_Select::-webkit-scrollbar {
+  width: 10px;
+  background-color: #1f1f1f;
+}
+.audioSrc_Select::-webkit-scrollbar-thumb {
+  background-color: #555;
+  border-radius: 5px;
+}
