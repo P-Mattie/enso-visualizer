@@ -11,6 +11,7 @@
   "description": "",
   "devDependencies": {
     "electron": "^30.0.9",
+    "realtime-bpm-analyzer": "^4.0.2",
     "tone": "^15.0.4"
   },
   "permissions": {
