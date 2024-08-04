@@ -1,6 +1,8 @@
-const { app, BrowserWindow, screen } = require("electron");
-const { startAudioStream } = require("./modules/stream-audio-src");
-const { sendAudioSrcs } = require("./modules/get-audio-srcs");
+const { app, BrowserWindow, screen, ipcMain } = require("electron");
+const {
+  startAudioStream,
+} = require("./modules/main/audio-source/stream-audio-src");
+const { sendAudioSrcs } = require("./modules/main/audio-source/get-audio-srcs");
 const { setMainWindow } = require("./modules/utils");
 
 // ------------------------------  Setup
@@ -36,5 +38,8 @@ app.on("ready", () => {
   createMainWindow();
   setMainWindow(mainWindow);
   setTimeout(sendAudioSrcs, 2000);
+});
+
+ipcMain.on("start-audio-stream", (event, data) => {
   startAudioStream(mainWindow);
 });

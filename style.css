@@ -6,7 +6,7 @@
 
 body {
   background-color: var(--bg-clr);
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 
 canvas {
@@ -17,7 +17,7 @@ canvas {
   user-select: none;
   background-color: var(--surface-clr);
   width: 400px;
-  height: 200px;
+  height: 300px;
   color: white;
   font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
   font-weight: 200;
@@ -30,7 +30,7 @@ canvas {
   height: 30px;
   position: absolute;
   margin-left: 310px;
-  margin-top: 44px;
+  margin-top: 10px;
   color: rgb(177, 177, 177);
   background-color: var(--surface-clr);
   border: none;
@@ -47,16 +47,8 @@ canvas {
   color: greenyellow;
 }
 
-#audioSrc_Curr {
-  margin: 0;
-  margin-top: 20px;
-  padding: 10px;
-  background-color: var(--surface2-clr);
-  color: antiquewhite;
-}
-
 .audioSrc_Menu {
-  margin-top: 16px;
+  margin-top: 50px;
   width: 90%;
   height: 60%;
   background-color: var(--surface2-clr);
@@ -71,7 +63,7 @@ canvas {
   overflow-y: auto;
   overflow-x: hidden;
   list-style-type: none;
-  height: 80px;
+  height: 80%;
   margin: 6px;
   padding: 0;
 }

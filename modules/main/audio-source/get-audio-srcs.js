@@ -1,6 +1,6 @@
-const { ipcMain } = require("electron");
+const { ipcMain, ipcRenderer } = require("electron");
 const { exec } = require("child_process");
-const { getMainWindow } = require("./utils");
+const { getMainWindow } = require("../../utils");
 
 ipcMain.on("getAudioSrcs", (event) => {
   sendAudioSrcs();
@@ -9,7 +9,7 @@ ipcMain.on("getAudioSrcs", (event) => {
 function getAudioSrcs() {
   return new Promise((resolve, reject) => {
     exec(
-      "LANG=C pactl list | grep -A2 'Source #' | grep 'Name: ' | cut -d\" \" -f2",
+      "LANG=C pactl list | grep -A2 'Source #' | grep '.monitor' | cut -d\" \" -f2",
       (error, stdout, stderr) => {
         if (error) {
           console.error("Error executing pactl:", error);

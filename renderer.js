@@ -1,6 +1,15 @@
 const { ipcRenderer } = require("electron");
-
+const module1 = require("./modules/renderer/audio-analysis/fft");
+const module2 = require("./modules/renderer/audio-visualisation/frequency-spectrum");
 // -----------------------
+
+const startAudioMonitorBtn = document.querySelector("#startAudioMonitor");
+
+startAudioMonitorBtn.addEventListener("click", function () {
+  ipcRenderer.send("start-audio-stream");
+});
+
+//-----------------------
 
 const srcsList = document.querySelector(".audioSrc_Select");
 const refreshListBtn = document.querySelector(".refresh-list-btn");
@@ -22,9 +31,13 @@ ipcRenderer.on("audioSrcs", (event, data) => {
 
 const srcsLiDoubleClick = (event) => {
   const srcName = event.target.innerText;
-  console.log(srcName);
   updateAudioSrc(srcName);
-  // add update Ui
+  const sinkUl = event.target.parentElement;
+  const sinkLis = Array.from(sinkUl.children);
+  sinkLis.forEach((li) => {
+    li.style.color = "";
+  });
+  event.target.style.color = "green";
 };
 
 //   handle rest in main !!!!!!!!!!!!!!!!!
@@ -89,3 +102,5 @@ ipcRenderer.on("audioData", (event, data) => {
   context.lineTo(canvas.width, canvas.height / 2);
   context.stroke();
 });
+
+//-----------------------------------------------

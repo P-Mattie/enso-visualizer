@@ -4,14 +4,17 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/addons/p5.sound.min.js"></script>
     <script src="renderer.js" defer></script>
     <title>Document</title>
   </head>
   <body>
+    <button id="startAudioMonitor">start monitor</button>
     <canvas id="visualization" width="800" height="200"></canvas>
+    <canvas id="canvas" width="800" height="400"></canvas>
 
     <div class="audioSrcPanel">
-      <h4 id="audioSrc_Curr">no source selected</h4>
       <button class="refresh-list-btn">refresh</button>
       <div class="audioSrc_Menu">
         <label for="audioSrc_Select">Select Audio Sink:</label>

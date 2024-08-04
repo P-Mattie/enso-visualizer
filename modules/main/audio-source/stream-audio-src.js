@@ -1,9 +1,23 @@
 const { spawn } = require("child_process");
+const { ipcMain } = require("electron");
+
+let sinkName;
+
+ipcMain.on("updateAudioSrc", (event, data) => {
+  sinkName = data;
+});
 
 function startAudioStream(mainWindow) {
-  // Start audio capture process
-  const captureProcess = spawn("parec", [
-    "--device=alsa_output.usb-PreSonus_Studio_24c_SC1E20414599-00.analog-stereo.monitor",
+  let captureProcess = null;
+
+  if (captureProcess) {
+    captureProcess.kill();
+    captureProcess = null;
+  }
+
+  console.log(sinkName);
+  captureProcess = spawn("parec", [
+    `--device=${sinkName}`,
     "--format=s16le",
     "--rate=44100",
     "--channels=2",
